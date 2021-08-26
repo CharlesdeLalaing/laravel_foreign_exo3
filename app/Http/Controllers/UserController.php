@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('welcome');
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.createUse');
     }
 
     /**
@@ -35,7 +36,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeUser = new User;
+        $storeProfil = new Profil;
+
+        $storeProfil->name = $request->name;
+        $storeProfil->age = $request->age;
+        $storeProfil->phone = $request->phone;
+
+        $storeUser->email = $request->email;
+        $storeUser->nickname = $request->nickname;
+        $storeUser->profile_id = $request->profile;
+
+        $storeUser->save();
+        $storeProfil->save();
+        
+
+        return redirect('/');
     }
 
     /**
