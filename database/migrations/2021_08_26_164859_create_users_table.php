@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('nickname');
-            $table->unsignedBigInteger('profile_id');
-            $table->foreign('profile_id')->references('id')->on('profils');
+            $table->unsignedBigInteger('profil_id');
+            $table->foreign('profil_id')->references('id')->on('profils');
             $table->timestamps();
         });
     }

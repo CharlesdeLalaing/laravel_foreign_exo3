@@ -36,21 +36,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $storeUser = new User;
-        $storeProfil = new Profil;
 
+        $storeProfil = new Profil;
         $storeProfil->name = $request->name;
         $storeProfil->age = $request->age;
         $storeProfil->phone = $request->phone;
+        $storeProfil->save();  
 
+        $storeUser = new User;
         $storeUser->email = $request->email;
         $storeUser->nickname = $request->nickname;
-        $storeUser->profile_id = $request->profile;
-
-        $storeUser->save();
-        $storeProfil->save();
+        $storeUser->profil_id =  $storeProfil->id;
+        $storeUser->save();      
         
-
         return redirect('/');
     }
 
@@ -60,9 +58,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+
     }
 
     /**
@@ -73,7 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
     }
 
     /**
